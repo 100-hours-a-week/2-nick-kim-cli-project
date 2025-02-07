@@ -1,5 +1,6 @@
-package com.example.adapter.out.persistence;
+package com.example.adapter.out.persistence.db;
 
+import com.example.adapter.out.persistence.repository.AccountRepository;
 import com.example.domain.Account;
 
 import java.util.Objects;

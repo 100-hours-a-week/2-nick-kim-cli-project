@@ -1,4 +1,4 @@
-package com.example.adapter.out.persistence;
+package com.example.adapter.out.persistence.db;
 
 import com.example.domain.Account;
 

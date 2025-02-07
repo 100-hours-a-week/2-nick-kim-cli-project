@@ -1,7 +1,7 @@
 package com.example.adapter.out.persistence;
 
+import com.example.adapter.out.persistence.repository.AccountRepository;
 import com.example.application.port.out.AccountCommandPort;
-import com.example.application.port.out.AccountQueryPort;
 
 public class AccountCommandPersistenceAdapter implements AccountCommandPort {
     private final AccountRepository accountRepository;
