@@ -1,6 +1,5 @@
 package com.example.application.service;
 
-import com.example.application.port.out.AccountCommandPort;
 import com.example.application.port.out.AccountQueryPort;
 
 public class AccountQueryUseCase {
