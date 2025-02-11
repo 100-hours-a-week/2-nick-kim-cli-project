@@ -1,16 +1,17 @@
 package com.example;
 
 
-import com.example.adapter.in.AccountConsoleInputAdapter;
-import com.example.adapter.out.AccountConsoleOutputAdapter;
-import com.example.adapter.out.persistence.AccountCommandPersistenceAdapter;
-import com.example.adapter.out.persistence.AccountMapDB;
-import com.example.adapter.out.persistence.AccountQueryPersistenceAdapter;
-import com.example.adapter.out.persistence.AccountRepository;
-import com.example.application.port.in.AccountInputPort;
-import com.example.application.port.out.AccountOutputPort;
-import com.example.application.service.AccountCommandUseCase;
-import com.example.application.service.AccountQueryUseCase;
+import com.example.system.AccountConsoleSystem;
+import com.example.account.adapter.in.AccountConsoleInputAdapter;
+import com.example.account.adapter.out.AccountConsoleOutputAdapter;
+import com.example.account.adapter.out.persistence.AccountCommandPersistenceAdapter;
+import com.example.account.adapter.out.persistence.db.AccountMapDB;
+import com.example.account.adapter.out.persistence.AccountQueryPersistenceAdapter;
+import com.example.account.adapter.out.persistence.repository.AccountRepository;
+import com.example.account.application.port.in.AccountInputPort;
+import com.example.account.application.port.out.AccountOutputPort;
+import com.example.account.application.service.AccountCommandUseCase;
+import com.example.account.application.service.AccountQueryUseCase;
 
 public class Application {
     public static void main(String[] args) {
