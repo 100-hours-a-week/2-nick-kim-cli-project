@@ -1,7 +1,7 @@
 ## 🏛️  클래스 다이어그램
 
 ---
-![class_diagram.png](class_diagram.png)
+![class_diagram2.png](class_diagram2.png)
 
 ## 📃 시나리오
 
@@ -74,3 +74,22 @@
 
 그래서 이번 과제로 얻은 결론은 "요구사항에 따라 필수지점은 정해져있고, 나머지는 꼼꼼하게"이다.
 
+
+---
+## 피드백 반영 후 수정
+
+### 1. 불필요 import 문 및 클래스 제거, 패키지 구성 변경
+
+- 불필요한 import 문을 제거했습니다.
+- 사용하지 않는 AccountListDB 클래스를 제거했습니다. 
+- account 패키지와 system 패키지를 구분하여 시스템과 관련된 것, 계좌와 관련된 것을 분리하였습니다.
+
+### 2. Facade 패턴 적용 및 AccountInputValidator 추가
+- Facade 패턴을 통해서 OutputPort와 InputPort가 여러 객체에 복잡하게 엮여있던 의존도를 낮췄습니다. 이제, 입력과 출력이 필요한 객체는 IOHandler 하나만 의존합니다.
+- 기존 AccountInMemoryDB에서 처리하던 유효성검사(Account가 유효한지, password가 일치하는지)를 findByAccountIdAndPassword 메서드 추가하고 DB에서 탐색할때 유효성을 검증합니다.
+- 또한, 입력받을 때 검사하던 유효성 검사는 AccountInputValidator에서 입력 + 검증을 둘다 하며 IOHnalder를 통해 입력받고 AccountValueValidator를 통해 검증합니다.
+
+### 3. State 패턴과 Strategy 패턴 적용
+- State 패턴을 통해 메뉴의 현재 상태를 저장하여 사용합니다.
+- 각 메뉴 상태에 따라서 화면을 보여주고, 입력을 받아 다음 절차로 진행시킵니다.
+- Strategy 패턴을 통해 State와 입력에 따라 Controller가 선택되어 실행됩니다.
