@@ -1,9 +1,7 @@
-package com.example.adapter.out.persistence.db;
+package com.example.account.adapter.out.persistence.db;
 
-import com.example.adapter.out.persistence.repository.AccountRepository;
-import com.example.domain.Account;
-
-import java.util.Objects;
+import com.example.account.adapter.out.persistence.repository.AccountRepository;
+import com.example.account.domain.Account;
 
 abstract class AccountInMemoryDB implements AccountRepository {
 
@@ -13,24 +11,19 @@ abstract class AccountInMemoryDB implements AccountRepository {
 
     @Override
     public int getBalance(long accountId, String password) throws IllegalArgumentException {
-        Account account = findAccountById(accountId);
-        validateAccount(account);
-        validatePassword(account, password);
+        Account account = findAccountByIdAndPassword(accountId, password);
         return account.getBalance();
     }
 
     @Override
     public boolean deposit(long accountId, int amount) throws IllegalArgumentException  {
         Account account = findAccountById(accountId);
-        validateAccount(account);
         return account.deposit(amount);
     }
 
     @Override
     public boolean withdraw(long accountId, String password, int amount) throws IllegalArgumentException {
-        Account account = findAccountById(accountId);
-        validateAccount(account);
-        validatePassword(account, password);
+        Account account = findAccountByIdAndPassword(accountId, password);
         return account.withdraw(amount);
     }
 
@@ -44,18 +37,6 @@ abstract class AccountInMemoryDB implements AccountRepository {
 
         putAccount(account);
         return account.getAccountId();
-    }
-
-    private void validateAccount(Account account) throws IllegalArgumentException  {
-        if (Objects.isNull(account)) {
-            throw new IllegalArgumentException(account.getAccountId() + "는 존재하지 않는 계좌번호입니다.");
-        }
-    }
-
-    private void validatePassword(Account account, String password) throws IllegalArgumentException  {
-        if (!account.checkPassword(password)) {
-            throw new IllegalArgumentException("비밀번호가 틀렸습니다.");
-        }
     }
 
     protected Long currentPK() {

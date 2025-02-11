@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.account.domain;
 
 public class  Account {
     private long accountId;
@@ -35,7 +35,7 @@ public class  Account {
         return true;
     }
 
-    public boolean checkPassword(String password) {
+    public boolean isSamePassword(String password) {
         return this.password.equals(password);
     }
 }

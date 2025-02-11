@@ -1,6 +1,6 @@
-package com.example.application.service;
+package com.example.account.application.service;
 
-import com.example.application.port.out.AccountCommandPort;
+import com.example.account.application.port.out.AccountCommandPort;
 
 public class AccountCommandUseCase {
     private final AccountCommandPort accountCommandPort;

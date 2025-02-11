@@ -1,6 +1,6 @@
-package com.example.application.service;
+package com.example.account.application.service;
 
-import com.example.application.port.out.AccountQueryPort;
+import com.example.account.application.port.out.AccountQueryPort;
 
 public class AccountQueryUseCase {
     private final AccountQueryPort accountQueryPort;

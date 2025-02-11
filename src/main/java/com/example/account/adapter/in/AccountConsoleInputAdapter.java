@@ -1,6 +1,6 @@
-package com.example.adapter.in;
+package com.example.account.adapter.in;
 
-import com.example.application.port.in.AccountInputPort;
+import com.example.account.application.port.in.AccountInputPort;
 
 import java.io.BufferedReader;
 import java.io.IOException;

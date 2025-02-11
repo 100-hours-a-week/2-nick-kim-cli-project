@@ -1,4 +1,4 @@
-package com.example.application.port.out;
+package com.example.account.application.port.out;
 
 public interface AccountQueryPort {
     int getBalance(long accountId, String password);

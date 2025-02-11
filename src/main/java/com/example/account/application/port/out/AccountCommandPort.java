@@ -1,4 +1,4 @@
-package com.example.application.port.out;
+package com.example.account.application.port.out;
 
 public interface AccountCommandPort {
     boolean withdraw(long accountId, String password, int amount);

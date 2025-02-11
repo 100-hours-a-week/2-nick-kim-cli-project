@@ -1,6 +1,6 @@
-package com.example.adapter.out;
+package com.example.account.adapter.out;
 
-import com.example.application.port.out.AccountOutputPort;
+import com.example.account.application.port.out.AccountOutputPort;
 
 public class  AccountConsoleOutputAdapter implements AccountOutputPort {
     @Override
