@@ -1,6 +1,16 @@
 package com.example;
 
 
+import com.example.account.application.port.out.AccountCommandPort;
+import com.example.account.application.port.out.AccountQueryPort;
+import com.example.exchange.adapter.out.ExchangeRateCommandAdapter;
+import com.example.exchange.adapter.out.ExchangeRateQueryAdapter;
+import com.example.exchange.adapter.out.persistence.ExchangeRateRepository;
+import com.example.exchange.adapter.out.persistence.ExchangeRateMapDB;
+import com.example.exchange.application.port.out.ExchangeRateCommandPort;
+import com.example.exchange.application.port.out.ExchangeRateQueryPort;
+import com.example.exchange.application.service.ExchangeRateCommandUseCase;
+import com.example.exchange.application.service.ExchangeRateQueryUseCase;
 import com.example.system.AccountConsoleSystem;
 import com.example.account.adapter.in.AccountConsoleInputAdapter;
 import com.example.account.adapter.out.AccountConsoleOutputAdapter;
@@ -20,13 +30,21 @@ public class Application {
     }
 
     private static AccountConsoleSystem initSystem() {
-        AccountRepository accountRepositoryPort = new AccountMapDB();
+        AccountRepository accountRepository = new AccountMapDB();
+        ExchangeRateRepository exchangeRateRepository = new ExchangeRateMapDB();
 
-        AccountQueryPersistenceAdapter accountQueryPersistenceAdapter = new AccountQueryPersistenceAdapter(accountRepositoryPort);
+        AccountQueryPort accountQueryPersistenceAdapter = new AccountQueryPersistenceAdapter(accountRepository);
         AccountQueryUseCase accountQueryUseCase = new AccountQueryUseCase(accountQueryPersistenceAdapter);
 
-        AccountCommandPersistenceAdapter accountCommandPersistenceAdapter = new AccountCommandPersistenceAdapter(accountRepositoryPort);
+        AccountCommandPort accountCommandPersistenceAdapter = new AccountCommandPersistenceAdapter(accountRepository);
         AccountCommandUseCase accountCommandUseCase = new AccountCommandUseCase(accountCommandPersistenceAdapter);
+
+
+        ExchangeRateQueryPort exchangeRateQueryPort = new ExchangeRateQueryAdapter(exchangeRateRepository);
+        ExchangeRateQueryUseCase exchangeRateQueryUseCase = new ExchangeRateQueryUseCase(exchangeRateQueryPort);
+
+        ExchangeRateCommandPort exchangeRateCommandPort = new ExchangeRateCommandAdapter(exchangeRateRepository);
+        ExchangeRateCommandUseCase exchangeRateCommandUseCase = new ExchangeRateCommandUseCase(exchangeRateCommandPort);
 
         AccountInputPort accountInputPort = new AccountConsoleInputAdapter();
         AccountOutputPort accountOutputPort = new AccountConsoleOutputAdapter();
@@ -34,6 +52,8 @@ public class Application {
         return new AccountConsoleSystem(
                 accountCommandUseCase,
                 accountQueryUseCase,
+                exchangeRateQueryUseCase,
+                exchangeRateCommandUseCase,
                 accountInputPort,
                 accountOutputPort);
     }
